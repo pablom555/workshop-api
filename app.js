@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
 const {router} = require('./src/router');
 const app = express();
@@ -12,14 +12,9 @@ app.mainDBRepository = mainDBRepository;
 app.use(cors());
 
 // JSON parsing
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Other request types parsing
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
 
 // Remove express header
 app.use((req, res, next) => {
@@ -29,5 +24,7 @@ app.use((req, res, next) => {
 
 // API requests routing
 app.use('/', router);
+
+
 
 module.exports = app;
