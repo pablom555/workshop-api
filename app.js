@@ -1,12 +1,14 @@
 const express = require('express');
-const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const {router} = require('./src/router');
 const app = express();
 const mainDBRepository = require('./src/repositories/main.repository');
 
 mainDBRepository.connect();
 app.mainDBRepository = mainDBRepository;
+
+dotenv.config({ path: '.env' })
 
 // Enable cors for public access
 app.use(cors());
