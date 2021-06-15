@@ -1,7 +1,5 @@
 const tokenService = require('./token.service');
 const userDao = require('./../dao/user.dao');
-const { array } = require('joi');
-
 
 class authService {
 
